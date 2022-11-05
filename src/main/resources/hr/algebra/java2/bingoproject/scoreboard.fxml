@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.7" prefHeight="337.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.algebra.java2.bingoproject.ScoreboardController">
+   <children>
+      <ImageView fitHeight="394.0" fitWidth="600.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../../../Pictures/background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="225.0" layoutY="32.0" style="-fx-background-color: none;" text="ROUND: " textFill="#ff9900">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Pane fx:id="panePlayerOne" layoutY="74.0" prefHeight="161.0" prefWidth="301.0">
+         <children>
+            <Label fx:id="lblPlayerOnePoints" layoutX="160.0" layoutY="43.0" style="-fx-background-color: none;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="43.0" style="-fx-background-color: none;" text="Player points:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="13.0" style="-fx-background-color: none;" text="Player name:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlayerOneName" layoutX="166.0" layoutY="13.0" style="-fx-background-color: none;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="78.0" style="-fx-background-color: none;" text="Player won:" textFill="#00ff11">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="109.0" style="-fx-background-color: none;" text="Player lost:" textFill="#f50202">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlayerOneWon" layoutX="156.0" layoutY="78.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlayerOneLost" layoutX="157.0" layoutY="109.0" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="panePlayerTwo" layoutX="290.0" layoutY="74.0" prefHeight="161.0" prefWidth="301.0" visible="false">
+         <children>
+            <Label fx:id="lblPlayerTwoPoints" layoutX="170.0" layoutY="43.0" style="-fx-background-color: none;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="43.0" style="-fx-background-color: none;" text="Player points:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="13.0" style="-fx-background-color: none;" text="Player name:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlayerTwoName" layoutX="170.0" layoutY="13.0" style="-fx-background-color: none;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="78.0" prefHeight="25.0" prefWidth="287.0" style="-fx-background-color: none;" text="Player won:" textFill="#00ff11">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="109.0" style="-fx-background-color: none;" text="Player lost:" textFill="#f50202">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlayerTwoWon" layoutX="151.0" layoutY="78.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlayerTwoLost" layoutX="151.0" layoutY="109.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <MenuBar prefHeight="25.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#returnToGame" text="Return to game" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label fx:id="lblRound" layoutX="301.0" layoutY="32.0" text="Label" textFill="#ff9900">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
