@@ -11,9 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -21,80 +21,116 @@ import java.util.*;
 
 public class GameController {
 
-    private final int HIGHEST_BINGO_NUMBER = 25;
+    private int HIGHEST_BINGO_NUMBER = 25;
     private final String BUTTON_STYLE = "-fx-background-color: green";
+
+    @FXML
+    private Button btnFirstColumnRow1_PlayerOne;
+    @FXML
+    private Button btnFirstColumnRow2_PlayerOne;
+    @FXML
+    private Button btnFirstColumnRow3_PlayerOne;
+    @FXML
+    private Button btnFirstColumnRow4_PlayerOne;
+    @FXML
+    private Button btnFirstColumnRow5_PlayerOne;
+    @FXML
+    private Button btnSecondColumnRow1_PlayerOne;
+    @FXML
+    private Button btnSecondColumnRow2_PlayerOne;
+    @FXML
+    private Button btnSecondColumnRow3_PlayerOne;
+    @FXML
+    private Button btnSecondColumnRow4_PlayerOne;
+    @FXML
+    private Button btnSecondColumnRow5_PlayerOne;
+    @FXML
+    private Button btnThirdColumnRow1_PlayerOne;
+    @FXML
+    private Button btnThirdColumnRow2_PlayerOne;
+    @FXML
+    private Button btnThirdColumnRow3_PlayerOne;
+    @FXML
+    private Button btnThirdColumnRow4_PlayerOne;
+    @FXML
+    private Button btnThirdColumnRow5_PlayerOne;
+    @FXML
+    private Button btnFourthColumnRow1_PlayerOne;
+    @FXML
+    private Button btnFourthColumnRow2_PlayerOne;
+    @FXML
+    private Button btnFourthColumnRow3_PlayerOne;
+    @FXML
+    private Button btnFourthColumnRow4_PlayerOne;
+    @FXML
+    private Button btnFourthColumnRow5_PlayerOne;
+    @FXML
+    private Button btnFifthColumnRow1_PlayerOne;
+    @FXML
+    private Button btnFifthColumnRow2_PlayerOne;
+    @FXML
+    private Button btnFifthColumnRow3_PlayerOne;
+    @FXML
+    private Button btnFifthColumnRow4_PlayerOne;
+    @FXML
+    private Button btnFifthColumnRow5_PlayerOne;
+
+
+
+    @FXML
+    private Button btnFirstColumnRow1_PlayerTwo;
+    @FXML
+    private Button btnFirstColumnRow2_PlayerTwo;
+    @FXML
+    private Button btnFirstColumnRow3_PlayerTwo;
+    @FXML
+    private Button btnFirstColumnRow4_PlayerTwo;
+    @FXML
+    private Button btnFirstColumnRow5_PlayerTwo;
+    @FXML
+    private Button btnSecondColumnRow1_PlayerTwo;
+    @FXML
+    private Button btnSecondColumnRow2_PlayerTwo;
+    @FXML
+    private Button btnSecondColumnRow3_PlayerTwo;
+    @FXML
+    private Button btnSecondColumnRow4_PlayerTwo;
+    @FXML
+    private Button btnSecondColumnRow5_PlayerTwo;
+    @FXML
+    private Button btnThirdColumnRow1_PlayerTwo;
+    @FXML
+    private Button btnThirdColumnRow2_PlayerTwo;
+    @FXML
+    private Button btnThirdColumnRow3_PlayerTwo;
+    @FXML
+    private Button btnThirdColumnRow4_PlayerTwo;
+    @FXML
+    private Button btnThirdColumnRow5_PlayerTwo;
+    @FXML
+    private Button btnFourthColumnRow1_PlayerTwo;
+    @FXML
+    private Button btnFourthColumnRow2_PlayerTwo;
+    @FXML
+    private Button btnFourthColumnRow3_PlayerTwo;
+    @FXML
+    private Button btnFourthColumnRow4_PlayerTwo;
+    @FXML
+    private Button btnFourthColumnRow5_PlayerTwo;
+    @FXML
+    private Button btnFifthColumnRow1_PlayerTwo;
+    @FXML
+    private Button btnFifthColumnRow2_PlayerTwo;
+    @FXML
+    private Button btnFifthColumnRow3_PlayerTwo;
+    @FXML
+    private Button btnFifthColumnRow4_PlayerTwo;
+    @FXML
+    private Button btnFifthColumnRow5_PlayerTwo;
+
+
     @FXML
     private Button btnBingo;
-    private List<Button> buttonList = new ArrayList<>();
-
-    @FXML
-    private Button btnFirstColumnRow1;
-
-    @FXML
-    private Button btnFirstColumnRow2;
-    @FXML
-    private Button btnFirstColumnRow3;
-    @FXML
-    private Button btnFirstColumnRow4;
-    @FXML
-    private Button btnFirstColumnRow5;
-    @FXML
-    private Button btnSecondColumnRow1;
-    @FXML
-    private Button btnSecondColumnRow2;
-    @FXML
-    private Button btnSecondColumnRow3;
-    @FXML
-    private Button btnSecondColumnRow4;
-    @FXML
-    private Button btnSecondColumnRow5;
-    @FXML
-    private Button btnThirdColumnRow1;
-    @FXML
-    private Button btnThirdColumnRow2;
-    @FXML
-    private Button btnThirdColumnRow3;
-    @FXML
-    private Button btnThirdColumnRow4;
-    @FXML
-    private Button btnThirdColumnRow5;
-    @FXML
-    private Button btnFourthColumnRow1;
-    @FXML
-    private Button btnFourthColumnRow2;
-    @FXML
-    private Button btnFourthColumnRow3;
-    @FXML
-    private Button btnFourthColumnRow4;
-    @FXML
-    private Button btnFourthColumnRow5;
-    @FXML
-    private Button btnFifthColumnRow1;
-    @FXML
-    private Button btnFifthColumnRow2;
-    @FXML
-    private Button btnFifthColumnRow3;
-    @FXML
-    private Button btnFifthColumnRow4;
-    @FXML
-    private Button btnFifthColumnRow5;
-
-    public Ticket ticket;
-
-    public Player player;
-
-    private List<Integer> listOfExtractedNumbers = new ArrayList<>();
-
-    public void setPlayer(Player player) {
-        this.player=player;
-    }
-
-    private List<Integer> listOfRandomNumbers_ticket;
-
-    private List<Integer> listOfRandomNumbers_extractedNumber;
-
-    @FXML
-    private Pane pnTicket;
     @FXML
     private Button btnNextTicket;
     @FXML
@@ -104,25 +140,29 @@ public class GameController {
     @FXML
     private Label lblExtractedNumbers;
 
-    @FXML
-    private Label lblYouWon;
-    @FXML
-    private Label lblLost;
-
-    private Integer round;
-
+    private Ticket playerTicket;
+    private Ticket computerTicket;
+    public Player player;
+    public Player computer;
+    public void setPlayer(Player player) {
+        this.player=player;
+    }
     private List<Player> listOfPlayers = new ArrayList<>();
+    private List<Integer> listOfExtractedNumbers = new ArrayList<>();
+    private List<Integer> listOfRandomNumbers_ticket;
+    private List<Integer> listOfRandomNumbers_extractedNumber;
 
     Timeline timer = new Timeline();
-
     Game game = new Game();
 
     public GameController() {
-        ticket = new Ticket();
+        playerTicket = new Ticket();
+        computerTicket = new Ticket();
+        computer = new Player("Computer");
         listOfRandomNumbers_ticket = new ArrayList<>();
         listOfRandomNumbers_extractedNumber = new ArrayList<>();
-        listOfPlayers.add(player);
         fillListWithRandomNumbers(listOfRandomNumbers_extractedNumber);
+        if (HIGHEST_BINGO_NUMBER<25) displayVictoryDialog("DANGER");
     }
 
     public Ticket nextTicket(){
@@ -131,37 +171,75 @@ public class GameController {
         listOfRandomNumbers_ticket.clear();
         fillListWithRandomNumbers(listOfRandomNumbers_ticket);
 
-        addButtonToMainList(btnFirstColumnRow1, ticketDemo);
-        addButtonToMainList(btnFirstColumnRow2,ticketDemo);
-        addButtonToMainList(btnFirstColumnRow3,ticketDemo);
-        addButtonToMainList(btnFirstColumnRow4,ticketDemo);
-        addButtonToMainList(btnFirstColumnRow5,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow1_PlayerOne, ticketDemo);
+        addButtonToMainList(btnFirstColumnRow2_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow3_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow4_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow5_PlayerOne,ticketDemo);
 
-        addButtonToMainList(btnSecondColumnRow1,ticketDemo);
-        addButtonToMainList(btnSecondColumnRow2,ticketDemo);
-        addButtonToMainList(btnSecondColumnRow3,ticketDemo);
-        addButtonToMainList(btnSecondColumnRow4,ticketDemo);
-        addButtonToMainList(btnSecondColumnRow5,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow1_PlayerOne,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow2_PlayerOne,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow3_PlayerOne,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow4_PlayerOne,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow5_PlayerOne,ticketDemo);
 
-        addButtonToMainList(btnThirdColumnRow1,ticketDemo);
-        addButtonToMainList(btnThirdColumnRow2,ticketDemo);
-        addButtonToMainList(btnThirdColumnRow3,ticketDemo);
-        addButtonToMainList(btnThirdColumnRow4,ticketDemo);
-        addButtonToMainList(btnThirdColumnRow5,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow1_PlayerOne,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow2_PlayerOne,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow3_PlayerOne,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow4_PlayerOne,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow5_PlayerOne,ticketDemo);
 
-        addButtonToMainList(btnFourthColumnRow1,ticketDemo);
-        addButtonToMainList(btnFourthColumnRow2,ticketDemo);
-        addButtonToMainList(btnFourthColumnRow3,ticketDemo);
-        addButtonToMainList(btnFourthColumnRow4,ticketDemo);
-        addButtonToMainList(btnFourthColumnRow5,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow1_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow2_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow3_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow4_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow5_PlayerOne,ticketDemo);
 
-        addButtonToMainList(btnFifthColumnRow1,ticketDemo);
-        addButtonToMainList(btnFifthColumnRow2,ticketDemo);
-        addButtonToMainList(btnFifthColumnRow3,ticketDemo);
-        addButtonToMainList(btnFifthColumnRow4,ticketDemo);
-        addButtonToMainList(btnFifthColumnRow5,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow1_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow2_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow3_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow4_PlayerOne,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow5_PlayerOne,ticketDemo);
 
-        return ticket=ticketDemo;
+        return playerTicket =ticketDemo;
+    }
+
+    public Ticket getComputerTicket(){
+        Ticket ticketDemo = new Ticket();
+        listOfRandomNumbers_ticket.clear();
+        fillListWithRandomNumbers(listOfRandomNumbers_ticket);
+
+        addButtonToMainList(btnFirstColumnRow1_PlayerTwo, ticketDemo);
+        addButtonToMainList(btnFirstColumnRow2_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow3_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow4_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFirstColumnRow5_PlayerTwo,ticketDemo);
+
+        addButtonToMainList(btnSecondColumnRow1_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow2_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow3_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow4_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnSecondColumnRow5_PlayerTwo,ticketDemo);
+
+        addButtonToMainList(btnThirdColumnRow1_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow2_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow3_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow4_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnThirdColumnRow5_PlayerTwo,ticketDemo);
+
+        addButtonToMainList(btnFourthColumnRow1_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow2_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow3_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow4_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFourthColumnRow5_PlayerTwo,ticketDemo);
+
+        addButtonToMainList(btnFifthColumnRow1_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow2_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow3_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow4_PlayerTwo,ticketDemo);
+        addButtonToMainList(btnFifthColumnRow5_PlayerTwo,ticketDemo);
+
+        return ticketDemo;
     }
 
     private void addButtonToMainList(Button button, Ticket ticket) {
@@ -178,9 +256,11 @@ public class GameController {
         btnBingo.setVisible(true);
         btnNextTicket.setVisible(false);
         btnStartGame.setVisible(false);
-        ticket.divisionIntoColumns();
         startExtractingNumbers();
-        player.setTicket(ticket);
+        player.setTicket(playerTicket);
+        computer.setTicket(getComputerTicket());
+        computerTicket=computer.getTicket();
+        computerBingo();
     }
 
     private void startExtractingNumbers() {
@@ -188,28 +268,31 @@ public class GameController {
         KeyFrame perTwoSecondsKeyframe = new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String number = extractNumber();
-                lblExtractedNumber.setText(number);
+                Integer number = extractNumber();
+                Integer divider=5;
+                lblExtractedNumber.setText(number.toString());
                 if (listOfExtractedNumbers.size()==HIGHEST_BINGO_NUMBER){
                     timer.stop();
-                    lblLost.setVisible(true);
+                    displayVictoryDialog(computer.getNickName());
                     endOfRound();
                 }
-                lblExtractedNumbers.setText(lblExtractedNumbers.getText().isEmpty() ? "\t" + number + "," : lblExtractedNumbers.getText() + "\t" + number + ",");
-                if ((listOfExtractedNumbers.size())%5==0) lblExtractedNumbers.setText(lblExtractedNumbers.getText() + "\n");
-
+                lblExtractedNumbers.setText(lblExtractedNumbers.getText().isEmpty() ? "\t" + number : lblExtractedNumbers.getText() + "\t" + number);
+                if (HIGHEST_BINGO_NUMBER>25) divider=15;
+                if ((listOfExtractedNumbers.size())%divider==0) lblExtractedNumbers.setText(lblExtractedNumbers.getText() + "\n");
+                findExtractedNumberInComputerTicket(number);
             }
         });
         timer.getKeyFrames().add(perTwoSecondsKeyframe);
         timer.play();
     }
 
-    private String extractNumber(){
+
+    private Integer extractNumber(){
         int extractedNumber = listOfRandomNumbers_extractedNumber.get(listOfRandomNumbers_extractedNumber.size()-1);
         listOfRandomNumbers_extractedNumber.remove(listOfRandomNumbers_extractedNumber.size()-1);
         listOfExtractedNumbers.add(extractedNumber);
 
-        return Integer.toString(extractedNumber);
+        return extractedNumber;
     }
 
     public void button_OnClick(ActionEvent event){
@@ -220,66 +303,66 @@ public class GameController {
         }
     }
 
-    /*private Boolean isInList(Button button){
-        int buttonNumber = Integer.parseInt(button.getText());
-        for (Integer listOfExtractedNumber : listOfExtractedNumbers) {
-            if (buttonNumber == listOfExtractedNumber) return true;
+    private void findExtractedNumberInComputerTicket(Integer number ) {
+        for (int i=0;i<computerTicket.mainList.size();i++){
+            if (Integer.parseInt(computerTicket.mainList.get(i).getText())==number){
+                computerTicket.mainList.get(i).setStyle(BUTTON_STYLE);
+                computer.guessedNumbers.add(Integer.valueOf(computerTicket.mainList.get(i).getText()));
+                computerBingo();
+            }
         }
+    }
 
-        return false;
-    }*/
+    private void computerBingo() {
+        if (computer.isBingo()){
+            timer.stop();
+            player.setLostGames();
+            computer.setWins();
+            displayVictoryDialog(computer.getNickName());
+            endOfRound();
+        }
+    }
 
     public void bingo(){
-
         timer.stop();
-        boolean firstColumnBingo=true, secondColumnBingo=true, thirdColumnBingo=true, fourthColumnBingo=true, fifthColumnBingo=true;
 
-        // ROW
-        for (int i=0; i<5;i++){
-            if (Objects.equals(ticket.firstColumn.get(i).getStyle(), BUTTON_STYLE)
-             && Objects.equals(ticket.secondColumn.get(i).getStyle(), BUTTON_STYLE)
-             && Objects.equals(ticket.thirdColumn.get(i).getStyle(), BUTTON_STYLE)
-             && Objects.equals(ticket.fourthColumn.get(i).getStyle(), BUTTON_STYLE)
-             && Objects.equals(ticket.fifthColumn.get(i).getStyle(), BUTTON_STYLE)) lblYouWon.setVisible(true);
+        if (player.isBingo()){
+            displayVictoryDialog(player.getNickName());
+            player.setWins();
+            computer.setLostGames();
         }
-
-        // COLUMN
-        for (int i=0; i<5;i++){
-            if (!Objects.equals(ticket.firstColumn.get(i).getStyle(), BUTTON_STYLE)) firstColumnBingo = false;
-            if (!Objects.equals(ticket.secondColumn.get(i).getStyle(), BUTTON_STYLE)) secondColumnBingo = false;
-            if (!Objects.equals(ticket.thirdColumn.get(i).getStyle(), BUTTON_STYLE)) thirdColumnBingo = false;
-            if (!Objects.equals(ticket.fourthColumn.get(i).getStyle(), BUTTON_STYLE)) fourthColumnBingo = false;
-            if (!Objects.equals(ticket.fifthColumn.get(i).getStyle(), BUTTON_STYLE)) fifthColumnBingo = false;
-        }
-
-        if (firstColumnBingo || secondColumnBingo || thirdColumnBingo || fourthColumnBingo || fifthColumnBingo) lblYouWon.setVisible(true);
-
-        // DIAGONAL
-        if (Objects.equals(ticket.firstColumn.get(0).getStyle(), BUTTON_STYLE)
-         && Objects.equals(ticket.secondColumn.get(1).getStyle(), BUTTON_STYLE)
-         && Objects.equals(ticket.thirdColumn.get(2).getStyle(), BUTTON_STYLE)
-         && Objects.equals(ticket.fourthColumn.get(3).getStyle(), BUTTON_STYLE)
-         && Objects.equals(ticket.fifthColumn.get(4).getStyle(), BUTTON_STYLE)) lblYouWon.setVisible(true);
-
-        if (!lblYouWon.isVisible()){
-            lblLost.setVisible(true);
+        else{
+            displayVictoryDialog(computer.getNickName());
             player.setLostGames();
+            computer.setWins();
         }
-        else player.setWins();
-
         endOfRound();
+    }
+
+    private static void displayVictoryDialog(String playerName) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("GAME OVER!");
+        alert.setContentText("Player " + playerName.toUpperCase() + " won!");
+        alert.showAndWait();
     }
 
     private void endOfRound() {
         btnBingo.setVisible(false);
         player.setPoints();
+        computer.setPoints();
         game.setRound();
         game.setListOfExtractedNumbers(listOfExtractedNumbers);
+        game.playerOne=player;
+        game.computer=computer;
     }
 
     public void selectNewTicket() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("game.fxml"));
         Parent root = fxmlLoader.load();
+        GameController gameController = fxmlLoader.getController();
+        gameController.game = game;
+        gameController.player = game.playerOne;
+        gameController.computer = game.computer;
         loadNewScreen(root, "New ticket");
     }
 
@@ -291,7 +374,7 @@ public class GameController {
         Parent root = fxmlLoader.load();
 
         ScoreboardController scoreboardController = fxmlLoader.getController();
-        scoreboardController.setScene(player, game);
+        scoreboardController.setScene(game);
         loadNewScreen(root, "Scoreboard");
     }
 
@@ -303,7 +386,7 @@ public class GameController {
         Parent root = fxmlLoader.load();
 
         AllMovesController allMovesController = fxmlLoader.getController();
-        allMovesController.fillTable(player, game);
+        allMovesController.fillTable(game);
         loadNewScreen(root,"All moves");
     }
 

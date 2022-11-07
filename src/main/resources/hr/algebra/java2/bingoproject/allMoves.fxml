@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.algebra.java2.bingoproject.AllMovesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.algebra.java2.bingoproject.AllMovesController">
    <children>
-      <MenuBar prefHeight="30.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
+      <MenuBar prefHeight="30.0" prefWidth="510.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
         <menus>
           <Menu mnemonicParsing="false" text="Options">
             <items>
@@ -18,22 +18,32 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="lblExtractedNumbers" alignment="TOP_CENTER" layoutX="-1.0" layoutY="66.0" prefHeight="534.0" prefWidth="167.0" style="-fx-background-color: linear-gradient(to right, #37D5D6, #ABE9CD);">
+      <Label fx:id="lblExtractedNumbers" alignment="TOP_CENTER" layoutX="-1.0" layoutY="66.0" prefHeight="534.0" prefWidth="167.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayerNumbers" alignment="TOP_CENTER" layoutX="166.0" layoutY="66.0" prefHeight="534.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);">
+      <Label fx:id="lblPlayerOneNumbers" alignment="TOP_CENTER" layoutX="166.0" layoutY="66.0" prefHeight="534.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="-1.0" layoutY="30.0" prefHeight="38.0" prefWidth="167.0" style="-fx-background-color: linear-gradient(to right, #37D5D6, #ABE9CD);" text="Extracted numbers">
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="30.0" prefHeight="38.0" prefWidth="167.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);" text="Extracted numbers">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="166.0" layoutY="30.0" prefHeight="38.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);" text="Player contains">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayerTwoNumbers" alignment="TOP_CENTER" layoutX="338.0" layoutY="66.0" prefHeight="534.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="338.0" layoutY="30.0" prefHeight="38.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to left, #37D5D6, #ABE9CD);" text="Computer contains">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

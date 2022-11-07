@@ -1,15 +1,11 @@
 package hr.algebra.java2.bingoproject;
 
 import hr.algebra.java2.bingoproject.model.Game;
-import hr.algebra.java2.bingoproject.model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,25 +16,28 @@ public class AllMovesController {
     @FXML
     private Label lblExtractedNumbers;
     @FXML
-    private Label lblPlayerNumbers;
+    private Label lblPlayerOneNumbers;
+    @FXML
+    private Label lblPlayerTwoNumbers;
 
     private List<Integer> extractedNumbers = new ArrayList<>();
-    private Player player;
     private Game game = new Game();
     private String YES = "YES";
     private String NO = "NO";
 
 
 
-    public void fillTable(Player player, Game game){
-        this.player = player;
+    public void fillTable(Game game){
         this.game = game;
         extractedNumbers = game.getListOfExtractedNumbers();
+        if (game.computer==null || game.playerOne==null) return;
 
         for (int i=0;i<extractedNumbers.size();i++){
             lblExtractedNumbers.setText(lblExtractedNumbers.getText() + extractedNumbers.get(i).toString()+"\n");
-            if (player.guessedNumbers.contains(extractedNumbers.get(i))) lblPlayerNumbers.setText(lblPlayerNumbers.getText()+YES+"\n");
-            else lblPlayerNumbers.setText(lblPlayerNumbers.getText()+NO+"\n");
+            if (game.playerOne.guessedNumbers.contains(extractedNumbers.get(i))) lblPlayerOneNumbers.setText(lblPlayerOneNumbers.getText()+YES+"\n");
+            else lblPlayerOneNumbers.setText(lblPlayerOneNumbers.getText()+NO+"\n");
+            if (game.computer.guessedNumbers.contains(extractedNumbers.get(i))) lblPlayerTwoNumbers.setText(lblPlayerTwoNumbers.getText()+YES+"\n");
+            else lblPlayerTwoNumbers.setText(lblPlayerTwoNumbers.getText()+NO+"\n");
         }
     }
 
@@ -47,7 +46,8 @@ public class AllMovesController {
         Parent root = fxmlLoader.load();
         GameController gameController = fxmlLoader.getController();
         gameController.game = game;
-        gameController.player = player;
+        gameController.player = game.playerOne;
+        gameController.computer = game.computer;
         loadNewScreen(root,"Game");
     }
 

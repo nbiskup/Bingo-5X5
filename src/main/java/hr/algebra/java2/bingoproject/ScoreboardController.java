@@ -14,12 +14,6 @@ import java.io.IOException;
 
 public class ScoreboardController {
 
-    private Player player;
-    @FXML
-    private Pane panePlayerOne;
-    @FXML
-    private Pane panePlayerTwo;
-
     @FXML
     private Label lblPlayerOneName;
     @FXML
@@ -42,13 +36,18 @@ public class ScoreboardController {
     private Game game = new Game();
 
 
-    public void setScene(Player player, Game game) {
+    public void setScene(Game game) {
         this.game = game;
-        this.player=player;
-        lblPlayerOneName.setText(player.getNickName());
-        lblPlayerOneLost.setText(player.getLostGames().toString());
-        lblPlayerOneWon.setText(player.getWins().toString());
-        lblPlayerOnePoints.setText(player.getPoints().toString());
+        lblPlayerOneName.setText(game.playerOne.getNickName());
+        lblPlayerOneLost.setText(game.playerOne.getLostGames().toString());
+        lblPlayerOneWon.setText(game.playerOne.getWins().toString());
+        lblPlayerOnePoints.setText(game.playerOne.getPoints().toString());
+
+        lblPlayerTwoName.setText(game.computer.getNickName());
+        lblPlayerTwoLost.setText(game.computer.getLostGames().toString());
+        lblPlayerTwoWon.setText(game.computer.getWins().toString());
+        lblPlayerTwoPoints.setText(game.computer.getPoints().toString());
+
         lblRound.setText(game.getRound().toString());
     }
 
@@ -56,7 +55,8 @@ public class ScoreboardController {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("game.fxml"));
         Parent root = fxmlLoader.load();
         GameController gameController = fxmlLoader.getController();
-        gameController.player=player;
+        gameController.player = game.playerOne;
+        gameController.computer = game.computer;
         gameController.game = game;
         loadNewScreen(root,"Game");
     }
