@@ -1,13 +1,11 @@
 package hr.algebra.java2.bingoproject;
 
 import hr.algebra.java2.bingoproject.model.Game;
-import hr.algebra.java2.bingoproject.model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
@@ -58,6 +56,7 @@ public class ScoreboardController {
         gameController.player = game.playerOne;
         gameController.computer = game.computer;
         gameController.game = game;
+        gameController.setGameOver(true);
         loadNewScreen(root,"Game");
     }
 

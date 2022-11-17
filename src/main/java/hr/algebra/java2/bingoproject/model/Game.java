@@ -1,36 +1,50 @@
 package hr.algebra.java2.bingoproject.model;
 
+import java.io.Serializable;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game{
 
-    public Game() {
+    private final String YES = "YES";
+    private final String NO = "NO";
+
+    public Game(){
     }
-    private List<List<Integer>> listOfExtractedNumbers = new ArrayList<>();
     private Integer round=0;
-
     public Player playerOne;
-    public Player playerTwo;
-
     public Player computer;
 
+    private List<Integer> listOfExtractedNumbers = new ArrayList<>();
+    public List<String> playerGuessed_String = new ArrayList<>();
+    public List<String> computerGuessed_String = new ArrayList<>();;
 
     public void setListOfExtractedNumbers(List<Integer> listOfExtractedNumbers) {
-        this.listOfExtractedNumbers.add(listOfExtractedNumbers);
+        this.listOfExtractedNumbers = listOfExtractedNumbers;
     }
-
     public List<Integer> getListOfExtractedNumbers() {
-        return listOfExtractedNumbers.get(round-1);
+        return listOfExtractedNumbers;
     }
-
     public void setRound() {
         this.round += 1;
     }
-
     public Integer getRound() {
         return round;
     }
+    public void loadRound(Integer round){ this.round = round;}
+    public void setGuessedNumbers(){
+        for (Integer number : listOfExtractedNumbers) {
+            if (playerOne.guessedNumbers.contains(number))
+                playerGuessed_String.add(YES);
+            else
+                playerGuessed_String.add(NO);
 
+            if (computer.guessedNumbers.contains(number))
+                computerGuessed_String.add(YES);
+            else
+                computerGuessed_String.add(NO);
+        }
+    }
 
 }

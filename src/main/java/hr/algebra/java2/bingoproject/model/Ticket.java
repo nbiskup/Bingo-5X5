@@ -2,11 +2,12 @@ package hr.algebra.java2.bingoproject.model;
 
 import javafx.scene.control.Button;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Ticket {
+public class Ticket{
 
     private Integer NUMBER_OF_COLUMNS_AND_ROWS= 5;
     public List<Button> mainList;
@@ -15,6 +16,11 @@ public class Ticket {
     public List<Button> thirdColumn;
     public List<Button> fourthColumn;
     public List<Button> fifthColumn;
+
+    public void setMainList(List<Button> mainList) {
+        this.mainList = mainList;
+        divisionIntoColumns();
+    }
 
     public void fillMainList(Button button) {
         this.mainList.add(button);

@@ -1,12 +1,11 @@
 package hr.algebra.java2.bingoproject.model;
 
-import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Player {
+public class Player{
 
     public Player(Ticket ticket) {
         this.ticket = ticket;
@@ -17,8 +16,7 @@ public class Player {
     }
     private final String BUTTON_STYLE = "-fx-background-color: green";
     private String nickName;
-    private Integer points=0;
-    private Ticket ticket;
+    public Ticket ticket;
     public List<Integer> guessedNumbers;
     private Integer wins = 0;
     private Integer lostGames = 0;
@@ -31,6 +29,13 @@ public class Player {
         this.wins += 1;
     }
 
+    public void loadWins(Integer wins) {
+        this.wins = wins;
+    }
+    public void loadGuessedNumbers(List<Integer> guessedNumbers) {this.guessedNumbers = guessedNumbers; }
+    public void loadLostGames(Integer lostGames) {
+        this.lostGames = lostGames;
+    }
     public void setLostGames() {
         this.lostGames += 1;
     }
@@ -47,9 +52,12 @@ public class Player {
 
     public String getNickName() {return nickName;}
 
-    public Integer getPoints() {return points;}
+    public Integer getPoints() {return wins*10-lostGames*10;}
 
-    public Integer setPoints() {return points=wins*10-lostGames*10;}
+    public void setLoadedMainList(List<Button>loadedMainList){
+        ticket = new Ticket();
+        ticket.setMainList(loadedMainList);
+    }
 
     public boolean isBingo(){
         boolean firstColumnBingo=true, secondColumnBingo=true, thirdColumnBingo=true, fourthColumnBingo=true, fifthColumnBingo=true;
@@ -77,27 +85,20 @@ public class Player {
     }
 
     private boolean firstColumnInList(int index) {
-        if (Objects.equals(ticket.firstColumn.get(index).getStyle(), BUTTON_STYLE)) return true;
-        return false;
+        return Objects.equals(ticket.firstColumn.get(index).getStyle(), BUTTON_STYLE);
     }
     private boolean secondColumnInList(int index) {
-        if (Objects.equals(ticket.secondColumn.get(index).getStyle(), BUTTON_STYLE)) return true;
-        return false;
+        return Objects.equals(ticket.secondColumn.get(index).getStyle(), BUTTON_STYLE);
     }
     private boolean thirdColumnInList(int index) {
-        if (Objects.equals(ticket.thirdColumn.get(index).getStyle(), BUTTON_STYLE)) return true;
-        return false;
+        return Objects.equals(ticket.thirdColumn.get(index).getStyle(), BUTTON_STYLE);
     }
     private boolean fourthColumnInList(int index) {
-        if (Objects.equals(ticket.fourthColumn.get(index).getStyle(), BUTTON_STYLE)) return true;
-        return false;
+        return Objects.equals(ticket.fourthColumn.get(index).getStyle(), BUTTON_STYLE);
     }
     private boolean fifthColumnInList(int index) {
-        if (Objects.equals(ticket.fifthColumn.get(index).getStyle(), BUTTON_STYLE)) return true;
-        return false;
+        return Objects.equals(ticket.fifthColumn.get(index).getStyle(), BUTTON_STYLE);
     }
 
 
-    @Override
-    public String toString() {return nickName;}
 }

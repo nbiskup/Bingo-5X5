@@ -1,44 +1,61 @@
 package hr.algebra.java2.bingoproject;
-
 import hr.algebra.java2.bingoproject.model.Game;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllMovesController {
 
     @FXML
-    private Label lblExtractedNumbers;
-    @FXML
-    private Label lblPlayerOneNumbers;
-    @FXML
-    private Label lblPlayerTwoNumbers;
+    private TableView tblMoves;
 
-    private List<Integer> extractedNumbers = new ArrayList<>();
     private Game game = new Game();
-    private String YES = "YES";
-    private String NO = "NO";
-
-
+    private ObservableList<Move> allMoves;
 
     public void fillTable(Game game){
         this.game = game;
-        extractedNumbers = game.getListOfExtractedNumbers();
         if (game.computer==null || game.playerOne==null) return;
 
-        for (int i=0;i<extractedNumbers.size();i++){
-            lblExtractedNumbers.setText(lblExtractedNumbers.getText() + extractedNumbers.get(i).toString()+"\n");
-            if (game.playerOne.guessedNumbers.contains(extractedNumbers.get(i))) lblPlayerOneNumbers.setText(lblPlayerOneNumbers.getText()+YES+"\n");
-            else lblPlayerOneNumbers.setText(lblPlayerOneNumbers.getText()+NO+"\n");
-            if (game.computer.guessedNumbers.contains(extractedNumbers.get(i))) lblPlayerTwoNumbers.setText(lblPlayerTwoNumbers.getText()+YES+"\n");
-            else lblPlayerTwoNumbers.setText(lblPlayerTwoNumbers.getText()+NO+"\n");
+        List<Integer> extractedNumbers = game.getListOfExtractedNumbers();
+        allMoves = FXCollections.observableArrayList();
+        game.setGuessedNumbers();
+        for (int i = 0; i<extractedNumbers.size();i++) {
+            allMoves.add(new Move(extractedNumbers.get(i),game.playerGuessed_String.get(i),game.computerGuessed_String.get(i)));
         }
+
+        init();
+        tblMoves.setItems(allMoves);
+    }
+
+    private void init(){
+        TableColumn ColumnExtractedNumbers = new TableColumn<>("Extracted numbers");
+        ColumnExtractedNumbers.setPrefWidth(150);
+        ColumnExtractedNumbers.setCellValueFactory(
+                new PropertyValueFactory<Move,Integer>("extractedNumber")
+        );
+
+        TableColumn ColumnPlayerGuessed = new TableColumn<>("Player contains");
+        ColumnPlayerGuessed.setPrefWidth(150);
+        ColumnPlayerGuessed.setCellValueFactory(
+                new PropertyValueFactory<Move,String>("playerOneContainsString")
+        );
+
+        TableColumn ColumnComputerGuessed = new TableColumn<>("Computer contains");
+        ColumnComputerGuessed.setPrefWidth(150);
+        ColumnComputerGuessed.setCellValueFactory(
+                new PropertyValueFactory<Move,String>("playerTwoContainsString")
+        );
+
+        tblMoves.getColumns().addAll(ColumnExtractedNumbers, ColumnPlayerGuessed, ColumnComputerGuessed);
     }
 
     public void returnToGame() throws IOException {
@@ -48,6 +65,7 @@ public class AllMovesController {
         gameController.game = game;
         gameController.player = game.playerOne;
         gameController.computer = game.computer;
+        gameController.setGameOver(true);
         loadNewScreen(root,"Game");
     }
 
