@@ -1,9 +1,12 @@
 package hr.algebra.java2.bingoproject;
 
+import hr.algebra.java2.bingoproject.jndi.JNDIConfigurationKey;
+import hr.algebra.java2.bingoproject.jndi.JNDIManager;
 import hr.algebra.java2.bingoproject.model.Game;
 import hr.algebra.java2.bingoproject.model.Player;
 import hr.algebra.java2.bingoproject.model.SerializableGame;
 import hr.algebra.java2.bingoproject.model.Ticket;
+import hr.algebra.java2.bingoproject.rmiserver.ChatService;
 import hr.algebra.java2.bingoproject.utils.DocumentationUtils;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,13 +16,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+import javax.naming.NamingException;
 import java.io.*;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.*;
 
 public class GameController {
@@ -147,8 +154,14 @@ public class GameController {
     private Pane pnPlayerOneTicket;
     @FXML
     private Pane pnComputerTicket;
-
-
+    @FXML
+    private Pane pnScreenPane;
+    @FXML
+    private TextArea allMessagesTextArea;
+    @FXML
+    private TextField messageTextField;
+    @FXML
+    private VBox vBox;
 
     private Ticket playerTicket;
     private Ticket computerTicket;
@@ -169,6 +182,66 @@ public class GameController {
     Timeline timer = new Timeline();
     Game game = new Game();
     SerializableGame serializableGame;
+    private ChatService stub = null;
+    public static int RMI_PORT;
+    public static String HOST;
+
+    public void setGame(Player player, boolean isSinglePlayer) {
+        this.player=player;
+        if (isSinglePlayer){
+            vBox.setVisible(false);
+            return;
+        }
+        playerTicket = new Ticket();
+        computerTicket = new Ticket();
+
+        Registry registry = null;
+        try {
+            HOST = JNDIManager.getConfigurationParameter(JNDIConfigurationKey.GAME_SERVER_IP);
+            RMI_PORT = Integer.parseInt(JNDIManager.getConfigurationParameter(JNDIConfigurationKey.RMI_SERVER_PORT));
+            registry = LocateRegistry.getRegistry(HOST,RMI_PORT);
+            new Thread(this::refreshMessage).start();
+            stub = (ChatService) registry.lookup(ChatService.REMOTE_OBJECT_NAME);
+
+        } catch (NotBoundException | NamingException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshMessage(){
+        while (true){
+            try {
+                Thread.sleep(1000);
+                allMessagesTextArea.clear();
+
+                fillTextAreaWithMessages();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void sendMessage() throws RemoteException {
+        String newMessage = messageTextField.getText();
+        stub.sendMessage(newMessage, player.getNickName());
+
+        fillTextAreaWithMessages();
+
+        messageTextField.clear();
+    }
+
+    private void fillTextAreaWithMessages() {
+        try {
+            StringBuilder allMessagesBuilder = new StringBuilder();
+            stub.receiveAllMessages().forEach(m -> allMessagesBuilder.append(m + "\n"));
+            allMessagesTextArea.setText(allMessagesBuilder.toString());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
     public GameController() {
@@ -309,7 +382,7 @@ public class GameController {
             @Override
             public void handle(ActionEvent event) {
                 Integer number = extractNumber();
-                Integer divider=5;
+                int divider=5;
                 lblExtractedNumber.setText(number.toString());
                 if (listOfExtractedNumbers.size()==HIGHEST_BINGO_NUMBER){
                     timer.stop();

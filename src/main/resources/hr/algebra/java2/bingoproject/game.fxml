@@ -9,9 +9,12 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to right, #37D5D6, #ABE9CD);;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.algebra.java2.bingoproject.GameController">
     <children>
-        <Pane fx:id="pnPlayerOneTicket" layoutX="73.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="404.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
+        <Pane fx:id="pnPlayerOneTicket" layoutX="35.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="404.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
             <children>
                 <Label layoutX="166.0" layoutY="14.0" text="YOU">
                     <font>
@@ -94,7 +97,7 @@
                     <font>
                         <Font size="20.0" />
                     </font>
-            </Button>
+                </Button>
                 <Button fx:id="btnFourthColumnRow5_PlayerOne" layoutX="232.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#button_OnClick" style="-fx-background-color: white;" text="0">
                     <font>
                         <Font size="20.0" />
@@ -133,198 +136,205 @@
                 <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-128.0" startX="202.0" startY="171.0" />
             </children>
         </Pane>
-      <Label layoutX="417.0" layoutY="25.0" text="EXTRACTED NUMBERS:">
-         <font>
-            <Font name="Book Antiqua Bold" size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnBingo" layoutX="493.0" layoutY="677.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#bingo" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #0BAB64, #3BB78F);" text="Bingo!" visible="false">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <MenuBar prefHeight="25.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
-         <menus>
-            <Menu mnemonicParsing="false" text="Game">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#selectNewTicket" text="Select new ticket" />
-                  <MenuItem mnemonicParsing="false" onAction="#generateDocumentation" text="Documentation" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Options">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#showScoreboard" text="Scoreboard" />
-                  <MenuItem mnemonicParsing="false" onAction="#showAllMoves" text="All moves" />
-                  <MenuItem mnemonicParsing="false" onAction="#saveGame" text="Save" />
-                  <MenuItem mnemonicParsing="false" onAction="#loadGame" text="Load" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <Button fx:id="btnNextTicket" layoutX="89.0" layoutY="678.0" mnemonicParsing="false" onAction="#nextTicket" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;" text="NEXT TICKET" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <Label fx:id="lblExtractedNumbers" alignment="CENTER" contentDisplay="CENTER" layoutX="273.0" layoutY="51.0" prefHeight="142.0" prefWidth="523.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblExtractedNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="515.0" layoutY="216.0" prefHeight="71.0" prefWidth="71.0" textFill="RED">
-         <font>
-            <Font name="System Bold" size="40.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnStartGame" layoutX="357.0" layoutY="676.0" mnemonicParsing="false" onAction="#startGame" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;" text="START GAME" textFill="WHITE" visible="false">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Pane fx:id="pnComputerTicket" layoutX="608.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="404.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
-         <children>
-            <Label layoutX="143.0" layoutY="14.0" text="COMPUTER">
-               <font>
-                  <Font name="Book Antiqua Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnFirstColumnRow1_PlayerTwo" layoutX="52.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnSecondColumnRow1_PlayerTwo" layoutX="112.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnThirdColumnRow1_PlayerTwo" layoutX="172.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFourthColumnRow1_PlayerTwo" layoutX="232.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFirstColumnRow2_PlayerTwo" layoutX="52.0" layoutY="103.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnSecondColumnRow2_PlayerTwo" layoutX="113.0" layoutY="102.0" minHeight="54.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnThirdColumnRow2_PlayerTwo" layoutX="172.0" layoutY="102.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFourthColumnRow2_PlayerTwo" layoutX="232.0" layoutY="102.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFirstColumnRow3_PlayerTwo" layoutX="52.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnSecondColumnRow3_PlayerTwo" layoutX="112.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnThirdColumnRow3_PlayerTwo" layoutX="172.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFourthColumnRow3_PlayerTwo" layoutX="232.0" layoutY="162.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFirstColumnRow4_PlayerTwo" layoutX="52.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnSecondColumnRow4_PlayerTwo" layoutX="112.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnThirdColumnRow4_PlayerTwo" layoutX="172.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFourthColumnRow4_PlayerTwo" layoutX="232.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFirstColumnRow5_PlayerTwo" layoutX="52.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnSecondColumnRow5_PlayerTwo" layoutX="112.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnThirdColumnRow5_PlayerTwo" layoutX="172.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFourthColumnRow5_PlayerTwo" layoutX="232.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFifthColumnRow1_PlayerTwo" layoutX="292.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFifthColumnRow2_PlayerTwo" layoutX="292.0" layoutY="102.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFifthColumnRow3_PlayerTwo" layoutX="292.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFifthColumnRow4_PlayerTwo" layoutX="292.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnFifthColumnRow5_PlayerTwo" layoutX="292.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Line endX="-100.0" endY="299.0" layoutX="213.0" layoutY="44.0" startX="-100.0" />
-            <Line endX="-100.0" endY="299.0" layoutX="272.0" layoutY="44.0" startX="-100.0" />
-            <Line endX="-100.0" endY="299.0" layoutX="332.0" layoutY="43.0" startX="-100.0" />
-            <Line endX="-100.0" endY="299.0" layoutX="393.0" layoutY="43.0" startX="-100.0" />
-            <Line endX="-100.0" endY="299.0" layoutX="452.0" layoutY="43.0" startX="-100.0" />
-            <Line endX="-100.0" endY="299.0" layoutX="152.0" layoutY="44.0" startX="-100.0" />
-            <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="171.0" startX="202.0" startY="171.0" />
-            <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="110.0" startX="202.0" startY="171.0" />
-            <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="50.0" startX="202.0" startY="171.0" />
-            <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-68.0" startX="202.0" startY="171.0" />
-            <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-10.0" startX="202.0" startY="171.0" />
-            <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-128.0" startX="202.0" startY="171.0" />
-         </children>
-      </Pane>
+        <Label layoutX="417.0" layoutY="25.0" text="EXTRACTED NUMBERS:">
+            <font>
+                <Font name="Book Antiqua Bold" size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnBingo" layoutX="500.0" layoutY="671.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#bingo" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #0BAB64, #3BB78F);" text="Bingo!" visible="false">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <MenuBar prefHeight="25.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
+            <menus>
+                <Menu mnemonicParsing="false" text="Game">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#selectNewTicket" text="Select new ticket" />
+                        <MenuItem mnemonicParsing="false" onAction="#generateDocumentation" text="Documentation" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showScoreboard" text="Scoreboard" />
+                        <MenuItem mnemonicParsing="false" onAction="#showAllMoves" text="All moves" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveGame" text="Save" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadGame" text="Load" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Button fx:id="btnNextTicket" layoutX="35.0" layoutY="676.0" mnemonicParsing="false" onAction="#nextTicket" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;" text="NEXT TICKET" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Button>
+        <Label fx:id="lblExtractedNumbers" alignment="CENTER" contentDisplay="CENTER" layoutX="273.0" layoutY="51.0" prefHeight="142.0" prefWidth="523.0">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblExtractedNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="515.0" layoutY="216.0" prefHeight="71.0" prefWidth="71.0" textFill="RED">
+            <font>
+                <Font name="System Bold" size="40.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnStartGame" layoutX="339.0" layoutY="676.0" mnemonicParsing="false" onAction="#startGame" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;" text="START GAME" textFill="WHITE" visible="false">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Pane fx:id="pnComputerTicket" layoutX="667.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="404.0" style="-fx-background-color: linear-gradient(to right, #4884EE, #06BCFB);;">
+            <children>
+                <Label layoutX="143.0" layoutY="14.0" text="COMPUTER">
+                    <font>
+                        <Font name="Book Antiqua Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnFirstColumnRow1_PlayerTwo" layoutX="52.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSecondColumnRow1_PlayerTwo" layoutX="112.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnThirdColumnRow1_PlayerTwo" layoutX="172.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFourthColumnRow1_PlayerTwo" layoutX="232.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFirstColumnRow2_PlayerTwo" layoutX="52.0" layoutY="103.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSecondColumnRow2_PlayerTwo" layoutX="113.0" layoutY="102.0" minHeight="54.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnThirdColumnRow2_PlayerTwo" layoutX="172.0" layoutY="102.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFourthColumnRow2_PlayerTwo" layoutX="232.0" layoutY="102.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFirstColumnRow3_PlayerTwo" layoutX="52.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSecondColumnRow3_PlayerTwo" layoutX="112.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnThirdColumnRow3_PlayerTwo" layoutX="172.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFourthColumnRow3_PlayerTwo" layoutX="232.0" layoutY="162.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFirstColumnRow4_PlayerTwo" layoutX="52.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSecondColumnRow4_PlayerTwo" layoutX="112.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnThirdColumnRow4_PlayerTwo" layoutX="172.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFourthColumnRow4_PlayerTwo" layoutX="232.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFirstColumnRow5_PlayerTwo" layoutX="52.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSecondColumnRow5_PlayerTwo" layoutX="112.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnThirdColumnRow5_PlayerTwo" layoutX="172.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFourthColumnRow5_PlayerTwo" layoutX="232.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFifthColumnRow1_PlayerTwo" layoutX="292.0" layoutY="44.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFifthColumnRow2_PlayerTwo" layoutX="292.0" layoutY="102.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFifthColumnRow3_PlayerTwo" layoutX="292.0" layoutY="161.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFifthColumnRow4_PlayerTwo" layoutX="292.0" layoutY="221.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFifthColumnRow5_PlayerTwo" layoutX="292.0" layoutY="281.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: white;" text="0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Line endX="-100.0" endY="299.0" layoutX="213.0" layoutY="44.0" startX="-100.0" />
+                <Line endX="-100.0" endY="299.0" layoutX="272.0" layoutY="44.0" startX="-100.0" />
+                <Line endX="-100.0" endY="299.0" layoutX="332.0" layoutY="43.0" startX="-100.0" />
+                <Line endX="-100.0" endY="299.0" layoutX="393.0" layoutY="43.0" startX="-100.0" />
+                <Line endX="-100.0" endY="299.0" layoutX="452.0" layoutY="43.0" startX="-100.0" />
+                <Line endX="-100.0" endY="299.0" layoutX="152.0" layoutY="44.0" startX="-100.0" />
+                <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="171.0" startX="202.0" startY="171.0" />
+                <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="110.0" startX="202.0" startY="171.0" />
+                <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="50.0" startX="202.0" startY="171.0" />
+                <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-68.0" startX="202.0" startY="171.0" />
+                <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-10.0" startX="202.0" startY="171.0" />
+                <Line endX="-98.5" endY="171.5" layoutX="150.0" layoutY="-128.0" startX="202.0" startY="171.0" />
+            </children>
+        </Pane>
+        <VBox fx:id="vBox" layoutX="445.0" layoutY="287.0" prefHeight="366.0" prefWidth="217.0">
+            <children>
+                <TextArea fx:id="allMessagesTextArea" editable="false" prefHeight="318.0" prefWidth="218.0" wrapText="true" />
+                <TextField fx:id="messageTextField" prefHeight="55.0" prefWidth="218.0" />
+                <Button mnemonicParsing="false" onAction="#sendMessage" prefHeight="46.0" prefWidth="217.0" text="Send message" />
+            </children>
+        </VBox>
     </children>
 </Pane>

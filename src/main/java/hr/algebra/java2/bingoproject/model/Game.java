@@ -18,7 +18,7 @@ public class Game{
 
     private List<Integer> listOfExtractedNumbers = new ArrayList<>();
     public List<String> playerGuessed_String = new ArrayList<>();
-    public List<String> computerGuessed_String = new ArrayList<>();;
+    public List<String> computerGuessed_String = new ArrayList<>();
 
     public void setListOfExtractedNumbers(List<Integer> listOfExtractedNumbers) {
         this.listOfExtractedNumbers = listOfExtractedNumbers;
@@ -27,7 +27,7 @@ public class Game{
         return listOfExtractedNumbers;
     }
     public void setRound() {
-        this.round += 1;
+        this.round ++;
     }
     public Integer getRound() {
         return round;
