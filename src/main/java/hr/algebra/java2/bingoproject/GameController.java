@@ -8,6 +8,7 @@ import hr.algebra.java2.bingoproject.model.SerializableGame;
 import hr.algebra.java2.bingoproject.model.Ticket;
 import hr.algebra.java2.bingoproject.rmiserver.ChatService;
 import hr.algebra.java2.bingoproject.utils.DocumentationUtils;
+import hr.algebra.java2.bingoproject.utils.XMLUtility;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -162,14 +163,16 @@ public class GameController {
     private TextField messageTextField;
     @FXML
     private VBox vBox;
+    @FXML
+    private MenuItem miReplay;
+    @FXML
+    private Button btnLoadReplay;
+
 
     private Ticket playerTicket;
     private Ticket computerTicket;
     public Player player;
     public Player computer;
-    public void setPlayer(Player player) {
-        this.player=player;
-    }
     private List<Integer> listOfExtractedNumbers = new ArrayList<>();
     private List<Integer> listOfRandomNumbers_ticket;
     private List<Integer> listOfRandomNumbers_extractedNumber;
@@ -183,6 +186,12 @@ public class GameController {
     Game game = new Game();
     SerializableGame serializableGame;
     private ChatService stub = null;
+    private List<String> listOfButtonText_player;
+    private List<String> listOfButtonStyle_player;
+    private List<String> listOfButtonText_computer;
+    private List<String> listOfButtonStyle_computer;
+    private SerializableGame serializableGameXML;
+
     public static int RMI_PORT;
     public static String HOST;
 
@@ -200,10 +209,16 @@ public class GameController {
             HOST = JNDIManager.getConfigurationParameter(JNDIConfigurationKey.GAME_SERVER_IP);
             RMI_PORT = Integer.parseInt(JNDIManager.getConfigurationParameter(JNDIConfigurationKey.RMI_SERVER_PORT));
             registry = LocateRegistry.getRegistry(HOST,RMI_PORT);
-            new Thread(this::refreshMessage).start();
+            new Thread(() -> refreshMessage()).start();
             stub = (ChatService) registry.lookup(ChatService.REMOTE_OBJECT_NAME);
 
-        } catch (NotBoundException | NamingException | IOException e) {
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -242,11 +257,8 @@ public class GameController {
     }
 
 
-
-
     public GameController() {
-        playerTicket = new Ticket();
-        computerTicket = new Ticket();
+
         computer = new Player("Computer");
         game.computer=computer;
         listOfRandomNumbers_ticket = new ArrayList<>();
@@ -258,13 +270,18 @@ public class GameController {
             contentDialog="Highest Bingo number must be HIGHER than 24!";
             displayDialog(titleDialog,contentDialog);
         }
+
     }
+
 
     public void setGameOver(Boolean gameOver) {
         isGameOver = gameOver;
+        vBox.setVisible(false);
     }
 
     public Ticket nextTicket(){
+        pnPlayerOneTicket.setDisable(false);
+        pnComputerTicket.setDisable(false);
         btnStartGame.setVisible(true);
         Ticket ticketDemo = new Ticket();
         listOfRandomNumbers_ticket.clear();
@@ -382,7 +399,7 @@ public class GameController {
             @Override
             public void handle(ActionEvent event) {
                 Integer number = extractNumber();
-                int divider=5;
+                Integer divider=5;
                 lblExtractedNumber.setText(number.toString());
                 if (listOfExtractedNumbers.size()==HIGHEST_BINGO_NUMBER){
                     timer.stop();
@@ -475,6 +492,31 @@ public class GameController {
         alert.show();
     }
 
+    public void replay() throws IOException {
+        if(!isGameOver){
+            miReplay.setDisable(true);
+            return;
+        }
+        saveGame();
+        XMLUtility.saveXML(listOfButtonText_player, listOfButtonStyle_player,
+                listOfButtonText_computer, listOfButtonStyle_computer,
+                listOfExtractedNumbers);
+        btnLoadReplay.setVisible(true);
+    }
+
+    public void loadReplay(){
+        serializableGameXML = XMLUtility.loadXML();
+        listOfExtractedNumbers = new ArrayList<>();
+
+        String[] parts = serializableGameXML.listOfExtractedNumbers_ToString.replace("[", "").replace("]", "").split(",");
+
+        /*for (String part : parts) {
+            listOfExtractedNumbers.add(Integer.parseInt(part.trim()));
+            System.out.println(part);
+        }*/
+
+    }
+
     public void saveGame() throws IOException {
         if (listOfExtractedNumbers==null) return;
         timer.stop();
@@ -496,10 +538,10 @@ public class GameController {
     }
 
     private void prepareTicketForSave(){
-        List<String> listOfButtonText_player = new ArrayList<>();
-        List<String> listOfButtonStyle_player = new ArrayList<>();
-        List<String> listOfButtonText_computer = new ArrayList<>();
-        List<String> listOfButtonStyle_computer = new ArrayList<>();
+        listOfButtonText_player = new ArrayList<>();
+        listOfButtonStyle_player = new ArrayList<>();
+        listOfButtonText_computer = new ArrayList<>();
+        listOfButtonStyle_computer = new ArrayList<>();
 
         for (Button button:game.playerOne.getTicket().mainList) {
             listOfButtonText_player.add(button.getText());
